@@ -1,0 +1,6 @@
+{
+  "name": "PG Hostel Management System",
+  "description": "Comprehensive Paying Guest (PG) hostel management platform featuring tenant stay duration tracking, room & bed allocation, AC rent segregation, payment screenshot verification, and tenant self-service portal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

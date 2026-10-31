@@ -1,0 +1,134 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: #020617; /* slate-950 */
+    color: #f1f5f9;            /* slate-100 */
+    line-height: 1.5;
+  }
+
+  /* Smooth scrollbar for sidebar-like panels */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #334155; /* slate-700 */
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #475569; /* slate-600 */
+  }
+
+  /* Focus ring — accessible & styled */
+  :focus-visible {
+    outline: 2px solid #6366f1; /* indigo-500 */
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Remove default button styling */
+  button {
+    cursor: pointer;
+  }
+
+  /* Remove number input arrows */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+/* ── Utilities ──────────────────────────────────────────────────────────── */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fade-in animation helper (used by modals & success states) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  animation: fadeIn 0.18s ease-out forwards;
+}
+
+/* Slide-in from top (mobile menu) */
+@keyframes slideInFromTop {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.slide-in-from-top-2 {
+  animation: slideInFromTop 0.18s ease-out forwards;
+}
+
+/* ── Print Styles ───────────────────────────────────────────────────────── */
+@media print {
+  /* Hide everything except the receipt */
+  body > * {
+    visibility: hidden !important;
+  }
+
+  /* Show only the printable receipt */
+  #printable-receipt,
+  #printable-receipt * {
+    visibility: visible !important;
+  }
+
+  #printable-receipt {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 32px !important;
+    margin: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    font-family: 'Plus Jakarta Sans', Arial, sans-serif !important;
+  }
+
+  /* Page setup */
+  @page {
+    size: A4;
+    margin: 15mm 20mm;
+  }
+
+  /* Prevent page break inside table rows */
+  tr {
+    page-break-inside: avoid;
+  }
+
+  /* Make links undecorated */
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+
+  /* Hide modal overlay, nav, footer */
+  header, footer, nav,
+  .print\:hidden,
+  [data-print="hidden"] {
+    display: none !important;
+  }
+}
+
